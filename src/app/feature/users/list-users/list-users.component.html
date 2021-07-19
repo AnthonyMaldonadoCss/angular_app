@@ -1,0 +1,66 @@
+<!--
+  Recuerde conservar los id, no deben ser modificados
+  ids = user-list__filter, user-list__table, user-list__table-item-[index], user-list__table-item-[index]-avatar, user-list__table-item-[index]-first_name, user-list__table-item-[index]-email, user-list__table-item-[index]-btn-delete
+  Remplazar [index] por el valor ejemplo "user-list__table-item-0"
+-->
+<app-nav-bar></app-nav-bar>
+
+<div class="container">
+  <h1>Listado General</h1>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="buscar"
+          name="filter"
+          [(ngModel)]="filterName"
+          id="user-list__filter"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table id="user-list__table" class="table table-hover table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th id="user-list__table-item-[id]">Id</th>
+            <th id="user-list__table-item-[email]">Correo</th>
+            <th id="user-list__table-item-[name]">Nombre</th>
+            <th id="user-list__table-item-[avatar]">imagen</th>
+            <th id="user-list__table-item-[action]">Accion</th>
+          </tr>
+        </thead>
+
+        <tbody class="aling-middle">
+          <tr *ngFor="let usuario of datosUsuarios | filterUserByName: filterName">
+            <td id="user-list__table-item-[id]">{{ usuario.id }}</td>
+            <td id="user-list__table-item-[email]">{{ usuario.email }}</td>
+            <td id="user-list__table-item-[name]">{{ usuario.first_name }}</td>
+            <td id="user-list__table-item-[action]">
+              <img
+                [src]="usuario.avatar"
+                class="img-thumbnail face"
+                alt=""
+                height="150"
+                width="270"
+              />
+            </td>
+            <td>
+              <div class="d-flex justify-content-around">
+                <button id="btn-delete" class="btn btn-danger" (click)="deleteUsuarios(usuario.id)">
+                  <i class="far fa-trash-alt">Eliminar</i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

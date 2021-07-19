@@ -1,0 +1,73 @@
+<!--
+  Recuerde conservar los id, no deben ser modificados
+  ids = login__email, login__password, login__password-error, login__email-error, login__btn-login
+-->
+<div class="login-form">
+  <div class="container">
+    <div class="card text-center">
+      <div class="card-header">Login System</div>
+      <div class="card-body">
+        <h3 class="card-title">Welcome!</h3>
+        <div class="card-text">
+          <form [formGroup]="form_login" (ngSubmit)="login()" errorTailor>
+            <div class="form-group content">
+              <h4>Email *</h4>
+              <div class="justify-content-between">
+                <input
+                  type="text"
+                  class="form-control outlined"
+                  id="login__email"
+                  placeholder="Enter email"
+                  formControlName="email"
+                  autocomplete="off"
+                  [controlErrorsTpl]="userName"
+                />
+              </div>
+            </div>
+            <div class="form-group content">
+              <h4>Password *</h4>
+              <div>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="login__password"
+                  placeholder="Enter password"
+                  formControlName="password"
+                  autocomplete="off"
+                  [controlErrorsTpl]="userJob"
+                />
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <div class="col-md-1">
+                <button
+                  [disabled]="form_login.invalid"
+                  id="user-create__btn-create"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="card-footer text-muted">Ceiba Software 🌴</div>
+    </div>
+  </div>
+</div>
+
+<ng-template let-error let-text="text" #userName>
+  <div id="required" *ngIf="error">
+    <b class="required">Email is required</b>
+  </div>
+</ng-template>
+<ng-template let-error let-text="text" #userJob>
+  <div id="required" *ngIf="error">
+    <b class="required">Password is required</b>
+  </div>
+  <div id="required" *ngIf="minlength">
+    <b class="required">The minimum of characters will be 8 </b>
+  </div>
+</ng-template>

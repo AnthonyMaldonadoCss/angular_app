@@ -1,0 +1,12 @@
+<app-nav-bar></app-nav-bar>
+<router-outlet></router-outlet>
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header">Welcome!</div>
+    <div class="card-body">
+      <h5 class="card-title" *ngIf="userlog.isLogged | async">Feliz de tenerte por aqui!</h5>
+      <p class="card-text">🌳</p>
+    </div>
+    <div class="card-footer text-muted">Ceiba Software</div>
+  </div>
+</div>
